@@ -29,7 +29,7 @@
             background-color: #000000;
             color: #ffffff;
             font-family: 'Inter', sans-serif;
-            overflow: hidden; 
+            overflow-x: hidden; 
         }
 
         /* Tabela Projektów (Playlista) */
@@ -187,7 +187,7 @@
         </div>
 
         <!-- Hero Section -->
-        <header id="home" class="p-8 md:p-10 pt-16 flex flex-col md:flex-row items-end gap-8 bg-gradient-to-b from-[#404040] via-[#181818] to-[#121212]">
+        <header id="home" class="p-6 md:p-10 pt-10 md:pt-16 flex flex-col md:flex-row items-center md:items-end gap-6 md:gap-8 bg-gradient-to-b from-[#404040] via-[#181818] to-[#121212]">
             <!-- ZMIANA: Zamiast ikony, wstawiamy zdjęcie (img tag) -->
             <div class="w-48 h-48 md:w-60 md:h-60 shadow-[0_8px_40px_rgba(0,0,0,0.6)] bg-[#282828] flex-shrink-0 relative group overflow-hidden rounded-md">
                  <!-- Tutaj wstawiamy Twoje zdjęcie. Plik musi nazywać się 'profile.jpg' i być w tym samym folderze co index.html -->
@@ -203,7 +203,7 @@
                     "Pochodna człowieka, z pasją do próby zrozumienia procesów, na których stoi świat. Project Manager z wieloletnim doświadczeniem w zarządzaniu projektami muzycznymi, stały bywalec planów teledysków, pasjonat kreatywnych tekstów kultury."
                 </p>
                 
-                <div class="flex flex-wrap gap-6 mt-8 text-sm font-bold text-gray-300">
+                <div class="fflex flex-wrap justify-center md:justify-start gap-4 md:gap-6 mt-6 md:mt-8 text-[11px] md:text-sm font-bold text-gray-300">
                     <div class="flex items-center gap-2"><i class="fas fa-check-circle text-[#1DB954]"></i> <span class="text-white">50+</span> Projektów</div>
                     <div class="flex items-center gap-2"><i class="fas fa-users text-[#1DB954]"></i> <span class="text-white">200+</span> Artystów</div>
                     <div class="flex items-center gap-2"><i class="fas fa-chart-line text-[#1DB954]"></i> <span class="text-white">1,5 mld</span> Streamów</div>
@@ -312,7 +312,7 @@
                 </div>
                 
                 <div class="w-full relative z-10">
-                    <h2 id="modal-title" class="text-3xl md:text-5xl font-bold text-white mb-3 leading-tight tracking-tight shadow-black drop-shadow-lg">Tytuł Projektu</h2>
+                    <h2 id="modal-title" class="text-3xl md:text-5xl font-bold text-white mb-3 leading-tight tracking-tight shadow-black drop-shadow-lg text-2xl md:text-5xl">Tytuł Projektu</h2>
                     <div class="flex flex-wrap items-center text-gray-300 text-sm font-medium gap-3">
                         <span class="flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full"><i class="fas fa-building text-[#1DB954]"></i> <span id="modal-client">Klient / Label</span></span>
                         <span class="flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full"><i class="fas fa-user-tag text-[#1DB954]"></i> <span id="modal-role">Rola</span></span>
@@ -329,7 +329,7 @@
                     <div class="w-1 bg-[#1DB954] h-12 rounded-full"></div>
                     <div>
                         <h3 class="text-white font-bold text-lg mb-1">O projekcie</h3>
-                        <p id="modal-desc" class="text-gray-300 leading-relaxed text-sm md:text-base font-light text-justify">
+                        <p id="modal-desc" class="text-gray-300 leading-relaxed text-sm md:text-base font-light text-justify text-sm md:text-base">
                             Opis...
                         </p>
                     </div>
@@ -632,25 +632,24 @@
             row.className = "project-row grid grid-cols-1 md:grid-cols-[3fr_1.5fr_1.5fr] gap-2 md:gap-4 p-3 md:px-0 md:py-3 rounded items-center border-b border-[#282828] md:border-none group";
             row.onclick = () => openModal(proj);
 
-            // Tytuł
+            // Tytuł i info mobilne
             const titleCol = document.createElement('div');
-            titleCol.className = "flex items-center overflow-hidden pl-2 md:pl-12 relative h-10";
+            titleCol.className = "flex items-center overflow-hidden pl-2 md:pl-12 relative min-h-[40px]";
             titleCol.innerHTML = `
-                <div class="play-icon-container absolute left-2 md:left-4 text-[#1DB954] transition-opacity">
+                <div class="play-icon-container absolute left-2 md:left-4 text-[#1DB954] transition-opacity hidden md:block">
                     <i class="fas fa-play text-sm"></i>
                 </div>
-                <div class="flex flex-col justify-center">
-                    <span class="project-title text-white font-medium text-sm md:text-base truncate w-full transition-colors">${proj.title}</span>
-                    <span class="text-gray-500 text-xs md:hidden mt-0.5">${proj.role} • ${proj.label}</span>
+                <div class="flex flex-col justify-center w-full pr-4">
+                    <span class="project-title text-white font-medium text-sm md:text-base truncate transition-colors">${proj.title}</span>
+                    <span class="text-gray-500 text-[10px] md:hidden mt-0.5 line-clamp-1">${proj.role} • ${proj.label}</span>
                 </div>
             `;
 
-            // Rola
+            // Kolumny widoczne tylko na dużych ekranach (md:block)
             const roleCol = document.createElement('div');
             roleCol.className = "text-gray-400 text-sm hidden md:block";
             roleCol.innerText = proj.role;
 
-            // Label
             const labelCol = document.createElement('div');
             labelCol.className = "text-gray-400 text-sm truncate hidden md:block";
             labelCol.innerText = proj.label;
